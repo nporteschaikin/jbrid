@@ -1,0 +1,4 @@
+jQuebrid
+========
+
+jQuery hybrid player
