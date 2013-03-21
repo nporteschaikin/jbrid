@@ -12,6 +12,7 @@
 		playing: 'playing',
 		time: 'time',
 		mute: 'mute',
+		mute: 'muted',
 		duration: 'duration',
 		volume: 'volume',
 		volumectrl: 'volumectrl',

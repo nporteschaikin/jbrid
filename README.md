@@ -51,3 +51,4 @@ jbrid allows you to add several elements to enhance the functionality of your pl
 * __volumectrl:__ An element that can be dragged to control the volume.
 * __time:__ An element containing the time elapsed in the video.
 * __duration:__ An element containing the duration of the video.
+
