@@ -68,6 +68,7 @@
 					
 					__setSettings($(this), $.extend ( {}, defaults, settings, $(this).data() ) );
 					__setUnique($(this));
+					__load($(this));
 					__switch($(this));
 					__stage($(this));
 					__events($(this));
@@ -210,6 +211,13 @@
 		} else {
 			return false;
 		}
+		
+	}
+	
+	function __load ( el ) {
+		
+		// $.ajax(__getSetting(el, 'src'));
+		// $.ajax(__getSetting(el, 'swf'));
 		
 	}
 	
@@ -440,6 +448,48 @@
 		return 'video' + __getSetting(el, 'unique');
 		
 	}
+	
+	// function __flashObj ( el ) {
+	// 	
+	// 	var obj = $('<object type="application/x-shockwave-flash"></object>');
+	// 	var param;
+	// 	var flash = {
+	// 		vars: {
+	// 			vidUrl: __getSetting(el, 'src'),
+	// 			minBuffer: __getSetting(el, 'minbuffer')
+	// 		},
+	// 		params: {
+	// 			allowFullScreen: __getSetting(el, 'fs'),
+	// 			scale: 'noScale', 
+	// 			salign: 'lt', 
+	// 			menu: 'false', 
+	// 			allowScriptAccess: 'always', 
+	// 			allowNetworking: 'all', 
+	// 			wmode: 'transparent'
+	// 		}
+	// 	};
+	// 
+	// 	obj.attr ( 'id', __getVideoId(el) );
+	// 	obj.attr ( 'name', __getVideoId(el) );
+	// 	obj.attr ( 'data', flash.vars.vidUrl );
+	// 	obj.attr ( 'width', '100%' );
+	// 	obj.attr ( 'height', '100%' );
+	// 	obj.css ( 'visibility', 'visible' );
+	// 	
+	// 	flash.params = $.extend ( flash.params, { flashVars: $.param ( flash.vars, false ) } );
+	// 	
+	// 	$.each ( flash.params,
+	// 		function ( key,value ) {
+	// 			param = $('<param />');
+	// 			param.attr ( 'name', value );
+	// 			param.attr ( 'value', value );
+	// 			obj.append ( param );
+	// 		}
+	// 	)
+	// 	
+	// 	return obj;
+	// 	
+	// }
 	
 	function __getFlash ( el ) {
 		
