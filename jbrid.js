@@ -12,7 +12,7 @@
 		playing: 'playing',
 		time: 'time',
 		mute: 'mute',
-		mute: 'muted',
+		muted: 'muted',
 		duration: 'duration',
 		volume: 'volume',
 		volumectrl: 'volumectrl',
@@ -20,52 +20,58 @@
 		axisprogress: 'x',
 		axisbuffer: 'x',
 		axisseeker: 'x',
+		dirseeker: 'tl',
 		axisvolume: 'x',
 		axisvolumectrl: 'x',
+		dirvolumectrl: 'tl',
 		
 		swf: 'jbrid.swf',
 		
-		fs: true,
+		fs: false,
+		fsbalign: 'tr',
+		fsboffsetx: 10,
+		fsboffsety: 10,
 		autoplay: false,
 		minbuffer: 0,
 		defaultVolume: 1,
 		force: false,
 		delimeter: ':'
 		
-	}
+	},
 	
-	var timers = {
+	timers = {
 		fast: 250,
 		medium: 500,
 		slow: 1000
-	}
+	},
 	
-	var events = {
+	events = {
 		ready: 'ready',
 		complete: 'complete',
 		playing: 'playing',
+		play: 'play',
+		stop: 'stop',
 		timeupdate: 'timeupdate',
 		loading: 'loading',
 		muted: 'muted',
 		volume: 'volume'
-	}
+	},
 	
-	var prefix = 'jbrid';
+	prefix = 'jbrid',
 	
-	var methods = {
+	methods = {
 		
 		init: function ( settings ) {
 			
 			return this.each ( 
 				function() {
 					
-					__setSettings($(this), $.extend ( defaults, settings, $(this).data() ) );
+					__setSettings($(this), $.extend ( {}, defaults, settings, $(this).data() ) );
 					__setUnique($(this));
 					__switch($(this));
 					__stage($(this));
 					__events($(this));
 					__binds($(this));
-					
 				}
 			)
 			
@@ -99,6 +105,18 @@
 					
 				}
 			);
+			
+		},
+		
+		volume: function ( num ) {
+			
+			return this.each(
+				function() {
+					
+					__setVolume ( $(this), num );
+					
+				}
+			)
 			
 		},
 		
@@ -187,8 +205,10 @@
 			__setSettings ( el, { video: false } );
 		} else if ( __supportsVideo() ) {
 			__setSettings ( el, { video: true } );
-		} else {
+		} else if ( __supportsFlash() ) {
 			__setSettings ( el, { video: false } );
+		} else {
+			return false;
 		}
 		
 	}
@@ -226,7 +246,6 @@
 			var flash = {
 				vars: {
 					vidUrl: __getSetting(el, 'src'),
-					autoPlay: __getSetting(el, 'autoplay'),
 					minBuffer: __getSetting(el, 'minbuffer')
 				},
 				params: {
@@ -267,14 +286,14 @@
 	
 	function __events ( el ) {
 		
-		if ( __useVideo(el) ) var video = el.data('video');
-		
 		if ( __useVideo(el) ) {
+			
+			var video = el.data('video');
 			
 			video.on ( __getBindName(el, 'canplay'), 
 				function () { 
-					el.trigger ( events.ready );
 					__setSettings ( el, { isReady: true } );
+					el.trigger ( events.ready );
 				} 
 			);
 			
@@ -305,6 +324,7 @@
 			function () {
 				clearInterval ( __getSetting ( el, 'intervalReady' ) );
 				__setVolume ( el, __getSetting ( el, 'defaultVolume' ) );
+				if ( __getSetting ( el, 'autoplay' ) ) el.jbrid('play');
 			}
 		)
 		
@@ -488,11 +508,13 @@
 			el.addClass(__getSetting(el, 'playing'));
 			__setSettings ( el, { isPlaying: true } );
 			if ( !__useVideo(el) ) __setSettings(el, { interval: __flashSetPlaying ( el ) });
+			el.trigger ( events.play );
 		} else {	
 			el.removeClass(__getSetting(el, 'playing'));
 			__setSettings ( el, { isPlaying: false } );
 			clearInterval ( __getSetting ( el, 'interval' ) );
 			if ( !__useVideo(el) ) __setSettings(el, { interval: null });
+			el.trigger ( events.stop );
 		}
 		
 	}
@@ -584,6 +606,7 @@
 		var pos;
 		var dist;
 		var offset;
+		var pct;
 		
 		if ( __getSetting(el, 'axisseeker') == 'y' ) {
 			pos = e.pageY;
@@ -596,7 +619,7 @@
 		}
 		
 		if ( pos >= offset && pos <= offset + dist ) {
-			var pct = (pos - offset) / dist;
+			__getSetting(el, 'dirseeker') == 'br' ? pct = 1 - ( ( pos - offset ) / dist ) : pct = ( pos - offset ) / dist;
 			return __getDuration ( el ) * pct;
 		}
 		
@@ -629,6 +652,7 @@
 		var pos;
 		var dist;
 		var offset;
+		var pct;
 		
 		if ( __getSetting(el, 'axisvolumectrl') == 'y' ) {
 			pos = e.pageY;
@@ -641,7 +665,7 @@
 		}
 		
 		if ( pos >= offset && pos <= offset + dist ) {
-			var pct = ( pos - offset ) / dist;
+			__getSetting(el, 'dirvolumectrl') == 'br' ? pct = 1 - ( ( pos - offset ) / dist ) : pct = ( pos - offset ) / dist;
 			return pct;
 		} 
 		
@@ -665,7 +689,7 @@
 			el.trigger ( events.muted );
 		} else {
 			__setSettings ( el, { isMuted: false } );
-			el.removeClass(__getSetting(el, 'playing'));
+			el.removeClass(__getSetting(el, 'muted'));
 		}
 		
 	}
