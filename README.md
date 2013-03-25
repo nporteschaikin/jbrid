@@ -4,7 +4,7 @@ jbrid is a fully-customizable hybrid HTML5 and Flash video player.  By default, 
  
 ## How it works
  
-Rather than using a <video> or <object> tag directly, jbrid takes simple elements and equips them as aspects of a video player.  Only an "src" attribute and a "stage" element is required to create the video player; however, there are several controls and meters that can be added simply by creating elements with an associated selector.  
+Rather than using a <video> or <object> tag directly, jbrid takes simple elements and equips them as aspects of a video player.  Only an "src" attribute and a "stage" element are required to create the video player; however, there are several controls and meters that can be added simply by creating elements with an associated selector.  
 
 ## Using jbrid
 
