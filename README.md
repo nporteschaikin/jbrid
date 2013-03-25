@@ -111,7 +111,7 @@ $('.myvideoelement').data('settings').isPlaying // = returns true is video is pl
 $('.myvideoelement').data('settings').video // = returns true is video is using HTML5 video tag
 ```
 
-There are many more attributes added to the settings object; these, however, seem to be the most useful.  The *settings* data object contains all settings; please observe this object to learn more.
+There are many more attributes added to the settings object; these, however, are likely the only ones worth noting.  The *settings* data object contains all settings; please observe this object to learn more.
 
 ## Note
 This is still a work in progress. 
