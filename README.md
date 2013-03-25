@@ -52,3 +52,62 @@ jbrid allows you to add several elements to enhance the functionality of your pl
 * __time:__ An element containing the time elapsed in the video.
 * __duration:__ An element containing the duration of the video.
 
+### Methods
+
+```javascript
+$('.myvideoelement').jbrid('play');
+# Play the video
+
+$('.myvideoelement').jbrid('pause');
+# Pause the video
+
+$('.myvideoelement').jbrid('volume', number);
+# Alter the volume
+# "number" must be between 0 and 1.
+
+$('.myvideoelement').jbrid('mute');
+# Mute the volume
+
+$('.myvideoelement').jbrid('unmute');
+# Unmute the volume
+```
+
+### Events
+```javascript
+$('.myvideoelement').on('loading', function);
+# Video is loading
+
+$('.myvideoelement').on('ready', function);
+# Video is ready
+
+$('.myvideoelement').on('play', function);
+# Play initiated
+
+$('.myvideoelement').on('playing', function);
+# Video is playing
+
+$('.myvideoelement').on('complete', function);
+# Video played to end
+
+$('.myvideoelement').on('stop', function);
+# Video stopped
+
+$('.myvideoelement').on('timechange', function);
+# Time of video changed
+
+$('.myvideoelement').on('muted', function);
+# Video was muted
+
+$('.myvideoelement').on('volume', function);
+# Video volume was changed
+```
+
+### Data
+```javascript
+$('.myvideoelement').data('settings').isReady # = returns true is video is ready
+
+$('.myvideoelement').data('settings').isPlaying # = returns true is video is playing
+
+$('.myvideoelement').data('settings').video # = returns true is video is using HTML5 video tag
+```
+
