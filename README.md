@@ -75,40 +75,40 @@ $('.myvideoelement').jbrid('unmute');
 ### Events
 ```javascript
 $('.myvideoelement').on('loading', function);
-# Video is loading
+// Video is loading
 
 $('.myvideoelement').on('ready', function);
-# Video is ready
+// Video is ready
 
 $('.myvideoelement').on('play', function);
-# Play initiated
+// Play initiated
 
 $('.myvideoelement').on('playing', function);
-# Video is playing
+// Video is playing
 
 $('.myvideoelement').on('complete', function);
-# Video played to end
+// Video played to end
 
 $('.myvideoelement').on('stop', function);
-# Video stopped
+// Video stopped
 
 $('.myvideoelement').on('timechange', function);
-# Time of video changed
+// Time of video changed
 
 $('.myvideoelement').on('muted', function);
-# Video was muted
+// Video was muted
 
 $('.myvideoelement').on('volume', function);
-# Video volume was changed
+// Video volume was changed
 ```
 
 ### Data
 ```javascript
-$('.myvideoelement').data('settings').isReady # = returns true is video is ready
+$('.myvideoelement').data('settings').isReady // = returns true is video is ready
 
-$('.myvideoelement').data('settings').isPlaying # = returns true is video is playing
+$('.myvideoelement').data('settings').isPlaying // = returns true is video is playing
 
-$('.myvideoelement').data('settings').video # = returns true is video is using HTML5 video tag
+$('.myvideoelement').data('settings').video // = returns true is video is using HTML5 video tag
 ```
 
 There are many more attributes added to the settings object; these, however, seem to be the most useful.  The *settings* data object contains all settings; please observe this object to learn more.
