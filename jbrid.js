@@ -216,8 +216,8 @@
 	
 	function __load ( el ) {
 		
-		// $.ajax(__getSetting(el, 'src'));
-		// $.ajax(__getSetting(el, 'swf'));
+		$('<object data="' + __getSetting(el, 'swf') + '"></object>').load();
+		$('<object data="' + __getSetting(el, 'src') + '"></object>').load();
 		
 	}
 	
@@ -247,41 +247,7 @@
 			
 		} else {
 			
-			scr = __flashObj(el);
-			stage.html(scr);
-			
-			// var flash = {
-			// 	vars: {
-			// 		vidUrl: __getSetting(el, 'src'),
-			// 		minBuffer: __getSetting(el, 'minbuffer')
-			// 	},
-			// 	params: {
-			// 		allowFullScreen: __getSetting(el, 'fs'),
-			// 		scale: 'noScale', 
-			// 		salign: 'lt', 
-			// 		menu: 'false', 
-			// 		allowScriptAccess: 'always', 
-			// 		allowNetworking: 'all', 
-			// 		wmode: 'transparent'
-			// 	},
-			// 	attr: {
-			// 		id: __getVideoId(el),
-			// 		name: __getVideoId(el)
-			// 	}
-			// };
-			// 
-			// swfobject.embedSWF (
-			// 	__getSetting(el, 'swf'), 
-			// 	__getVideoId(el), 
-			// 	'100%', 
-			// 	'100%', 
-			// 	'10', 
-			// 	null, 
-			// 	flash.vars, 
-			// 	flash.params, 
-			// 	flash.attr
-			// );
-			
+			stage.html(__flashObj(el));
 			player = __getFlash(el);
 			
 		}
@@ -612,9 +578,9 @@
 		return setInterval (
 			function () {
 				if ( __getPctBuffered ( el ) == 1 ) {
+					__setSettings ( el, { isReady: true } );
 					el.trigger ( events.loading );
 					el.trigger ( events.ready );
-					__setSettings ( el, { isReady: true } );
 				} else {
 					el.trigger ( events.loading );
 				}
