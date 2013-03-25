@@ -56,58 +56,62 @@ jbrid allows you to add several elements to enhance the functionality of your pl
 
 ```javascript
 $('.myvideoelement').jbrid('play');
-# Play the video
+// Play the video
 
 $('.myvideoelement').jbrid('pause');
-# Pause the video
+// Pause the video
 
 $('.myvideoelement').jbrid('volume', number);
-# Alter the volume
-# "number" must be between 0 and 1.
+// Alter the volume
+// "number" must be between 0 and 1.
 
 $('.myvideoelement').jbrid('mute');
-# Mute the volume
+// Mute the volume
 
 $('.myvideoelement').jbrid('unmute');
-# Unmute the volume
+// Unmute the volume
 ```
 
 ### Events
 ```javascript
 $('.myvideoelement').on('loading', function);
-# Video is loading
+// Video is loading
 
 $('.myvideoelement').on('ready', function);
-# Video is ready
+// Video is ready
 
 $('.myvideoelement').on('play', function);
-# Play initiated
+// Play initiated
 
 $('.myvideoelement').on('playing', function);
-# Video is playing
+// Video is playing
 
 $('.myvideoelement').on('complete', function);
-# Video played to end
+// Video played to end
 
 $('.myvideoelement').on('stop', function);
-# Video stopped
+// Video stopped
 
 $('.myvideoelement').on('timechange', function);
-# Time of video changed
+// Time of video changed
 
 $('.myvideoelement').on('muted', function);
-# Video was muted
+// Video was muted
 
 $('.myvideoelement').on('volume', function);
-# Video volume was changed
+// Video volume was changed
 ```
 
 ### Data
 ```javascript
-$('.myvideoelement').data('settings').isReady # = returns true is video is ready
+$('.myvideoelement').data('settings').isReady // = returns true is video is ready
 
-$('.myvideoelement').data('settings').isPlaying # = returns true is video is playing
+$('.myvideoelement').data('settings').isPlaying // = returns true is video is playing
 
-$('.myvideoelement').data('settings').video # = returns true is video is using HTML5 video tag
+$('.myvideoelement').data('settings').video // = returns true is video is using HTML5 video tag
 ```
 
+There are many more attributes added to the settings object; these, however, are likely the only ones worth noting.  The *settings* data object contains all settings; please observe this object to learn more.
+
+## Note
+This is still a work in progress. 
