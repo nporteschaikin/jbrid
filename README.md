@@ -56,20 +56,20 @@ jbrid allows you to add several elements to enhance the functionality of your pl
 
 ```javascript
 $('.myvideoelement').jbrid('play');
-# Play the video
+// Play the video
 
 $('.myvideoelement').jbrid('pause');
-# Pause the video
+// Pause the video
 
 $('.myvideoelement').jbrid('volume', number);
-# Alter the volume
-# "number" must be between 0 and 1.
+// Alter the volume
+// "number" must be between 0 and 1.
 
 $('.myvideoelement').jbrid('mute');
-# Mute the volume
+// Mute the volume
 
 $('.myvideoelement').jbrid('unmute');
-# Unmute the volume
+// Unmute the volume
 ```
 
 ### Events
